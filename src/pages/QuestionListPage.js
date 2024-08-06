@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { getQuestions } from '../api';
 import DateText from '../components/DateText';
@@ -14,7 +15,7 @@ function QuestionItem({ question }) {
     <Card className={styles.questionItem} key={question.title}>
       <div className={styles.info}>
         <p className={styles.title}>
-          {question.title}
+          <Link to={`/questions/${question.id}`}>{question.title}</Link>
           {question.answers.length > 0 && (
             <span className={styles.count}>[{question.answers.length}]</span>
           )}
@@ -43,8 +44,7 @@ function QuestionListPage() {
     <ListPage
       variant="community"
       title="커뮤니티"
-      description="코드댓의 2만 수강생들과 함께 공부해봐요."
-    >
+      description="코드댓의 2만 수강생들과 함께 공부해봐요.">
       <form className={searchBarStyles.form}>
         <input
           name="keyword"
